@@ -51,6 +51,7 @@ function Register() {
                 <Form.Control name='password' type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required/>
             </Form.Group>
             <Button type='submit'>Register</Button>
+            <a href='/login'>Already have an account? Login here</a>
         </Form>
     )
 }

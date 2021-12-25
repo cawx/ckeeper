@@ -1,9 +1,12 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import { Navigate, useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
 function Login() {
+
+    const navigate = useNavigate()
 
     const[email, setEmail] = React.useState('')
     const[password, setPassword] = React.useState('')
@@ -18,6 +21,7 @@ function Login() {
         })
         .then((res) => {
             console.log(res.data)
+            navigate('/home')
         })
         .catch((err) => {
             console.log(err)
@@ -36,6 +40,7 @@ function Login() {
                 <Form.Control name='password' type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required/>
             </Form.Group>
             <Button type='submit'>Login</Button>
+            <a href='/register'>Don't have an account? Create one here</a>
         </Form>
     )
 }
