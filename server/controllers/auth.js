@@ -1,5 +1,7 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
+const jwt = require('jsonwebtoken')
+require('dotenv').config()
 
 exports.register = async(req, res) => {
     const { firstName, lastName, email, password } = req.body
@@ -29,20 +31,32 @@ exports.register = async(req, res) => {
 exports.login = async(req, res) => {
     const { email, password } = req.body
     try {
-        const exist = await User.findOne({ email: email })
-        if(!exist) throw Error('Account with this e-mail does not exist')
+        User.findOne({ email: email })
+        .then(user => {
 
-        bcrypt.compare(password, exist.password, (err, res) => {
-            if(err) {
-                throw Error('Something went terribly wrong')
-            } else if(res) {
-               console.log('Login success!')
-            } else {
-               console.log('Passwords do not match')
-            }
+            if (!user) return res.status(400).json({ message: "User does not exist" })
+
+            bcrypt.compare(password, user.password, (err, data) => {
+                if (err) throw err
+                if (data) {
+                    const userData = {
+                        id: user.id,
+                        firstName: user.firstName,
+                        lastName: user.lastName,
+                        email
+                    }
+                    const token = jwt.sign(userData, process.env.JWT_SECRET)
+                    if(!token) throw Error('Something went terribly wrong..')
+                    user.token = token
+                    return res.status(200).json({ message: "Login success" })
+                } else {
+                    return res.status(401).json({ message: "Wrong password" })
+                }
+
+            })
+
         })
-
-        res.status(200).json({ message: 'Successful login' })
+        
     } catch(e) {
         res.status(400).json({ message: e.message })
     }

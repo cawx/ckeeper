@@ -7,7 +7,7 @@ import logo from '../images/contact-icon.png'
 function LandingNav() {
     return (
         <>
-            <Navbar className='home-nav' >
+            <Navbar className='navbar' fixed='top'>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav id='land-nav-links'>

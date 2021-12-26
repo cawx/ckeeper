@@ -11,6 +11,7 @@ function Register() {
     const[lastName, setLastName] = React.useState('')
     const[email, setEmail] = React.useState('')
     const[password, setPassword] = React.useState('')
+    const[error, setError] = React.useState(false)
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -23,36 +24,42 @@ function Register() {
         })
         .then((res) => {
             console.log(res.data)
+            setError(false)
         })
         .catch((err) => {
+            setError(true)
             console.log(err)
         })
     }
 
     return (
-        <Form onSubmit={handleSubmit}>
-            <Row className='mb-3'>
-                <Form.Group as={Col} controlId="formGridEmail">
-                    <Form.Label>First name</Form.Label>
-                    <Form.Control name='firstName' type="text" placeholder="First name" onChange={e => setFirstName(e.target.value)} required/>
-                </Form.Group>
+        <div className='register-page'>
+            <Form onSubmit={handleSubmit} className='register-form'>
+                <h1>Register</h1>
+                { error && (<div id='register-error-msg'>Error creating an account</div>) }
+                <Row className='mb-3'>
+                    <Form.Group as={Col} controlId="formGridEmail">
+                        <Form.Label>First name</Form.Label>
+                        <Form.Control name='firstName' type="text" placeholder="First name" onChange={e => setFirstName(e.target.value)} required/>
+                    </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridPassword">
-                    <Form.Label>Last name</Form.Label>
-                    <Form.Control name='lastName' type="text" placeholder="Last name" onChange={e => setLastName(e.target.value)} required/>
+                    <Form.Group as={Col} controlId="formGridPassword">
+                        <Form.Label>Last name</Form.Label>
+                        <Form.Control name='lastName' type="text" placeholder="Last name" onChange={e => setLastName(e.target.value)} required/>
+                    </Form.Group>
+                </Row>
+                <Form.Group as={Col} controlId="formGridEmail">
+                    <Form.Label>E-mail</Form.Label>
+                    <Form.Control name='email' type="email" placeholder="E-mail" onChange={e => setEmail(e.target.value)} required/>
                 </Form.Group>
-            </Row>
-            <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>E-mail</Form.Label>
-                <Form.Control name='email' type="email" placeholder="E-mail" onChange={e => setEmail(e.target.value)} required/>
-            </Form.Group>
-            <Form.Group as={Col} controlId="formGridEmail">
-                <Form.Label>Password</Form.Label>
-                <Form.Control name='password' type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required/>
-            </Form.Group>
-            <Button type='submit'>Register</Button>
-            <a href='/login'>Already have an account? Login here</a>
-        </Form>
+                <Form.Group as={Col} controlId="formGridEmail">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control name='password' type="password" placeholder="Password" onChange={e => setPassword(e.target.value)} required/>
+                </Form.Group>
+                <Button type='submit' id='form-rl-button'>Register</Button>
+                <a href='/login'>Already have an account? Login here</a>
+            </Form>
+        </div>
     )
 }
 

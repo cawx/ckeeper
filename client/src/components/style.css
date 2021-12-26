@@ -6,7 +6,9 @@
     padding: 0;
     margin: 0;
 }
-
+body {
+    overflow-x: hidden;
+}
 /* navbar */
 .navbar {
     background: none;
@@ -25,6 +27,7 @@
     display: flex;
     align-items: center;
     font-weight: 900;
+    color: white;
 }
 #land-logo h3 {
     margin: 0;
@@ -33,7 +36,103 @@
 }
 #land-nav-register {
     background: none;
-    color: blue;
+    border: 2px solid #e64d4d;
+    color: #e64d4d;
+}
+#land-nav-login {
+    background-color: #e64d4d;
+    border: 2px solid #e64d4d;
 }
 
 /* Login and register */
+.login-page, .register-page {
+    height: 100vh;
+    display: grid;
+    place-items: center;
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1) ), url('../images/black-geo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+.login-form, .register-form {
+    max-width: 70%;
+}
+.login-form h1, .register-form h1 {
+    color: #e64d4d;
+    font-weight: 700;
+    text-align: center;
+    font-size: 3rem;
+}
+.login-form input, .register-form input {
+    padding: 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    border: 2px solid #e64d4d;
+    color: white;
+}
+.login-form input:focus, .register-form input:focus {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+#form-rl-button {
+    background-color: #e64d4d;
+    border: 2px solid #e64d4d;
+    width: 100%;
+}
+.login-form a, .register-form a {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+    color: rgb(180, 180, 180);
+}
+.login-form a:hover, .register-form a:hover {
+    color: rgb(150, 150, 150);
+}
+#login-error-msg, #register-error-msg {
+    text-align: center;
+    color: #942828;
+}
+/* Landing page */
+.landing-page-s1 {
+    display: grid;
+    place-items: center;
+    height: 80vh;
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1) ), url('../images/black-geo.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+#landing-welcome-text {
+    text-align: center;
+    padding: 2rem;
+}
+#landing-welcome-text p {
+    color: rgb(240, 240, 240);
+    word-wrap: break-word;
+    font-size: 1.5rem;
+    max-width: 70rem;
+}
+#landing-welcome-text h1{
+    color: #e64d4d;
+    font-weight: 700;
+    font-size: 4rem;
+}
+/* Lost */
+.lost-page-404 {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    background: linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1) ), url('../images/black-geo.jpg');
+}
+#lost-page-text {
+    text-align: center;
+}
+#lost-page-text h1{
+    font-weight: 700;
+    color: #e64d4d;
+}
+#lost-page-text p, #lost-page-text a {
+    color: rgb(200, 200, 200);
+}
