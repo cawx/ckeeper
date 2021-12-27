@@ -13,7 +13,6 @@ function App() {
   return (
     <Router>
       {/*<Nav />*/}
-      <LandingNav />
       <Routes>
         <Route exact path='/' element={<Landing />} />
         <Route path='/register' element={<Register />} />

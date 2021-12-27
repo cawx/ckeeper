@@ -4,6 +4,7 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/esm/Col'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'
+import LandingNav from './LandingNav'
 
 function Register() {
 
@@ -34,6 +35,7 @@ function Register() {
 
     return (
         <div className='register-page'>
+            <LandingNav />
             <Form onSubmit={handleSubmit} className='register-form'>
                 <h1>Register</h1>
                 { error && (<div id='register-error-msg'>Error creating an account</div>) }

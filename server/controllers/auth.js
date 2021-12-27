@@ -46,9 +46,8 @@ exports.login = async(req, res) => {
                         email
                     }
                     const token = jwt.sign(userData, process.env.JWT_SECRET)
-                    if(!token) throw Error('Something went terribly wrong..')
-                    user.token = token
-                    return res.status(200).json({ message: "Login success" })
+
+                    return res.status(200).send({ token })
                 } else {
                     return res.status(401).json({ message: "Wrong password" })
                 }

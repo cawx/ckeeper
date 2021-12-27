@@ -1,6 +1,7 @@
 import React from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
+import LandingNav from "./LandingNav"
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
@@ -22,6 +23,7 @@ function Login() {
         })
         .then((res) => {
             console.log(res.data)
+            localStorage.setItem('token', res.data.token)
             setError(false)
             navigate('/home')
         })
@@ -34,6 +36,7 @@ function Login() {
 
     return (
         <div className='login-page'>
+            <LandingNav />
             <Form onSubmit={handleSubmit} className='login-form'>
                 <h1>Login</h1>
                 { error && (<div id='login-error-msg'>Wrong e-mail or password</div>) }
