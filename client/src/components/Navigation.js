@@ -10,7 +10,6 @@ import AddNewContact from './AddNewContact'
 
 function Navigation() {
 
-    const[showAdd, setShowAdd] = React.useState(false)
     const[getName, setGetName] = React.useState(true)
     const[name, setName] = React.useState('')
     const token = localStorage.getItem('token')
@@ -40,19 +39,15 @@ function Navigation() {
                                 <h3>Keeper</h3>
                             </Navbar.Brand>
                         </Nav.Link>
-                        <div>
-                            <Button id='add-c-btn' onClick={() => setShowAdd(true)}>Add new contact +</Button>
-                            <AddNewContact show={showAdd} onHide={() => setShowAdd(false)} />
-                        </div>
-                        <Dropdown>
+                        <Dropdown align='end'>
                             <Dropdown.Toggle id="nav-dropdown-btn">
                             {name}
                             </Dropdown.Toggle>
                             <Dropdown.Menu variant="dark">
-                            <Dropdown.Item href="#">Settings</Dropdown.Item>
-                            <Dropdown.Item href="#">Contact</Dropdown.Item>
-                            <Dropdown.Divider />
-                            <Dropdown.Item href="#"><Button onClick={logout}>Log Out</Button></Dropdown.Item>
+                                <Dropdown.Item href="#">Settings</Dropdown.Item>
+                                <Dropdown.Item href="#">Contact</Dropdown.Item>
+                                <Dropdown.Divider />
+                                <Dropdown.Item href="#"><Button onClick={logout}>Log Out</Button></Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
                     </Nav>

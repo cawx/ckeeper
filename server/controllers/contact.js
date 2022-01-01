@@ -26,3 +26,13 @@ exports.getcontact = async(req, res) => {
     res.status(200).send(contacts)
 }
 
+exports.deletecontact = async(req, res) => {
+    const { contactid } = req.query
+    try {
+        const contact = await Contact.deleteOne({_id: contactid})
+        if(!contact) throw Error('Contact with this id does not exist')
+        res.status(200).json({ message: 'Contact has been deleted' })
+    } catch (err) {
+        res.status(400).json({ message: err.message })
+    }
+}
