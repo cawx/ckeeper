@@ -253,3 +253,8 @@ body {
 #contact-el-button.dropdown-toggle:after {
     display: none !important;
 }
+#email-icon {
+    width: 30px;
+    text-align: center;
+    margin-right: 0.5rem;
+}

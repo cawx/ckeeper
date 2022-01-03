@@ -6,14 +6,13 @@ import logo from '../images/contact-icon.png'
 import Dropdown from 'react-bootstrap/Dropdown'
 import jwt from 'jwt-decode'
 import { useNavigate } from 'react-router-dom'
-import AddNewContact from './AddNewContact'
 
 function Navigation() {
 
     const[getName, setGetName] = React.useState(true)
     const[name, setName] = React.useState('')
     const token = localStorage.getItem('token')
-
+    
     const navigate = useNavigate()
 
     if(token && getName === true) {

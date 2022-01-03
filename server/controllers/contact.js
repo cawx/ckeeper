@@ -6,6 +6,7 @@ exports.addcontact = async(req, res) => {
     try {
         console.log('ADD CONTACT DATA')
         console.log(req.body)
+        console.log(phone)
         const newContact = new Contact({
             user,
             name,
@@ -33,6 +34,30 @@ exports.deletecontact = async(req, res) => {
         if(!contact) throw Error('Contact with this id does not exist')
         res.status(200).json({ message: 'Contact has been deleted' })
     } catch (err) {
+        res.status(400).json({ message: err.message })
+    }
+}
+
+exports.editcontact = async(req, res) => {
+    const { contactid, newname, newemail, newphone } = req.body
+    try  {
+        if(newname) {
+            Contact.findOneAndUpdate({_id: contactid}, {name: newname}, {new: true}, (err) =>{
+                if(err) throw Error('Error updating contact')
+            })
+        }
+        if(newemail) {
+            Contact.findOneAndUpdate({_id: contactid}, {email: newemail}, {new: true}, (err) =>{
+                if(err) throw Error('Error updating contact')
+            })
+        }
+        if(newphone) {
+            Contact.findOneAndUpdate({_id: contactid}, {phone: newphone}, {new: true}, (err) =>{
+                if(err) throw Error('Error updating contact')
+            })
+        }
+        res.status(200).json({ message: 'Contact has been successfully updated' })
+    } catch(err) {
         res.status(400).json({ message: err.message })
     }
 }

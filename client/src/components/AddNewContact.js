@@ -37,6 +37,7 @@ function AddNewContact(props) {
             setName('')
             setEmail('')
             setPhone('')
+            
         })
         .catch((err) => {
             console.log(err)
